@@ -14,7 +14,7 @@ pipeline{
              steps{
             gitCheckout(
                 branch: "main",
-                url: "git@github.com:Shankargoud1/spring-boot-war-example.git"
+                url: "git@github.com:Shankargoud1/mrdevops_java_app.git"
             )
             }
         }
