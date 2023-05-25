@@ -11,7 +11,8 @@ pipeline{
         stage('Git Checkout'){
              steps{
             gitCheckout(
-                git branch: 'main', url: ' git@github.com:Shankargoud1/jenkins.git'
+                branch: "main",
+                url: "git@github.com:Shankargoud1/jenkins.git"
             )
             }
         }
