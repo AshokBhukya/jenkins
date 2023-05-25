@@ -14,7 +14,7 @@ pipeline{
              steps{
             gitCheckout(
                 branch: "main",
-                url: "git@github.com:Shankargoud1/jenkins.git"
+                url: "git@github.com:Shankargoud1/spring-boot-war-example.git"
             )
             }
         }
