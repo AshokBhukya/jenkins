@@ -18,16 +18,26 @@ pipeline{
             ) 
             }
         }
-        stage(' maven Build'){
+        
+      
+      stage('Unit Test maven'){
          
-          
-
             steps{
+               script{
+                   
+                   mvnTest()
+               }
+            }
+        }
+      
+      stage(' maven Build'){
+          steps{
                script{
                    
                    mvnBuild()
                }
             }
         }
+
     }
     }
