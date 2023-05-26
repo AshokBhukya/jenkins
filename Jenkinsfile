@@ -6,11 +6,15 @@ pipeline{
 
      tools {
     maven 'maven'
-  }
+        }
+     parameters{
 
+        choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
+     }
     stages{
          
         stage('Git Checkout'){
+            when { expression {  params.action == 'create' } }
              steps{
             gitCheckout(
                 branch: "master",
@@ -21,6 +25,8 @@ pipeline{
         
       
       stage('Unit Test maven'){
+
+        when { expression {  params.action == 'create' } }
          
             steps{
                script{
@@ -31,7 +37,8 @@ pipeline{
         }
       
         stage('Integration Test maven'){
- 
+          
+          when { expression {  params.action == 'create' } }
              steps{
                script{
                    
@@ -39,8 +46,22 @@ pipeline{
                }
             }
         }
+       
+
+      stage('Static code analysis: Sonarqube'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
+                   
+                   def  withSonarQubeEnv(credentialsId: 'sonarqube') 
+                   statiCodeAnalysis(SonarQubecredentialsId)
+               }
+            }
+        }
 
       stage(' maven Build'){
+         
+         when { expression {  params.action == 'create' } }
        
            steps{
                script{
