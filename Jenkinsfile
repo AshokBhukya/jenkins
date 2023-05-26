@@ -30,8 +30,19 @@ pipeline{
             }
         }
       
+        stage('Integration Test maven'){
+ 
+             steps{
+               script{
+                   
+                   mvnIntegrationTest()
+               }
+            }
+        }
+
       stage(' maven Build'){
-          steps{
+       
+           steps{
                script{
                    
                    mvnBuild()
