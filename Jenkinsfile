@@ -1,4 +1,4 @@
-@Library('mylibrary') _
+@Library('myLibrary') _
 
 pipeline{
 
