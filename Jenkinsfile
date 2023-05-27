@@ -93,7 +93,7 @@ pipeline{
                    
                    dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
-            }
+            } 
         }
 
 
