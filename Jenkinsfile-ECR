@@ -5,7 +5,7 @@ pipeline{
     agent any
  
      tools {
-    maven 'maven',
+    maven 'maven'
     terraform 'terraform'
         }
      parameters{
