@@ -11,7 +11,7 @@ aws_eks_cluster_config = {
       }
 }
 
-eks_node_group_config = {
+eks_node_group_config = { 
 
   "node1" = {
 
