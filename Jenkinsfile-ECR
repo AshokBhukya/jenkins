@@ -130,7 +130,7 @@ pipeline{
     //                dockerImageCleanup("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
     //            }
     //         }
-    //     } 
+    //     }  
 
     stage('Create EKS Cluster : Terraform'){
             when { expression {  params.action == 'create' } }
