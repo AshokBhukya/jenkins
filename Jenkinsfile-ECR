@@ -29,108 +29,108 @@ pipeline{
             when { expression {  params.action == 'create' } }
              steps{
             gitCheckout(
-                branch: "main",
-                url: "git@github.com:Shankargoud1/EKS_Cluster_using_Terraform.git"
+                branch: "master",
+                url: "git@github.com:Shankargoud1/java-hello-world-with-maven.git"
             ) 
             }
         }
            
       
-    // stage('Unit Test maven'){
+    stage('Unit Test maven'){
 
-    //     when { expression {  params.action == 'create' } }
+        when { expression {  params.action == 'create' } }
          
-    //         steps{
-    //            script{
+            steps{
+               script{
                    
-    //                mvnTest()
-    //            }
-    //         }
-    //     }
+                   mvnTest()
+               }
+            }
+        }
       
-    // stage('Integration Test maven'){
+    stage('Integration Test maven'){
           
-    //       when { expression {  params.action == 'create' } }
-    //          steps{
+          when { expression {  params.action == 'create' } }
+             steps{
+               script{
+                   
+                   mvnIntegrationTest()
+               }
+            }
+        }
+       
+
+    // stage('Static code analysis: Sonarqube'){
+    //      when { expression {  params.action == 'create' } }
+    //         steps{
     //            script{
                    
-    //                mvnIntegrationTest()
+    //                def  SonarQubecredentialsId = 'sonar-api'
+    //                statiCodeAnalysis(SonarQubecredentialsId)
     //            }
     //         }
     //     }
-       
-
-    // // stage('Static code analysis: Sonarqube'){
-    // //      when { expression {  params.action == 'create' } }
-    // //         steps{
-    // //            script{
-                   
-    // //                def  SonarQubecredentialsId = 'sonar-api'
-    // //                statiCodeAnalysis(SonarQubecredentialsId)
-    // //            }
-    // //         }
-    // //     }
      
-    // // stage('Quality Gate Status Check : Sonarqube'){
-    // //      when { expression {  params.action == 'create' } }
-    // //         steps{
-    // //            script{
+    // stage('Quality Gate Status Check : Sonarqube'){
+    //      when { expression {  params.action == 'create' } }
+    //         steps{
+    //            script{
                    
-    // //                def  SonarQubecredentialsId = 'sonar-api'
-    // //                QualityGateStatus(SonarQubecredentialsId)
-    // //            }
-    // //         }
-    // //     }
+    //                def  SonarQubecredentialsId = 'sonar-api'
+    //                QualityGateStatus(SonarQubecredentialsId)
+    //            }
+    //         }
+    //     }
 
-    // stage(' maven Build'){
+    stage(' maven Build'){
          
-    //      when { expression {  params.action == 'create' } }
+         when { expression {  params.action == 'create' } }
        
-    //        steps{
-    //            script{
+           steps{
+               script{
                    
-    //                mvnBuild()
-    //            }
-    //         }
-    //     }
+                   mvnBuild()
+               }
+            }
+        }
     
-    // stage('Docker Image Build : ECR'){
-    //      when { expression {  params.action == 'create' } }
-    //         steps{
-    //            script{
+    stage('Docker Image Build : ECR'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-    //                dockerBuild("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
-    //            }
-    //         }
-    //     }
+                   dockerBuild("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
+               }
+            }
+        }
     
-    // stage('Docker Image Scan: trivy '){
-    //      when { expression {  params.action == 'create' } }
-    //         steps{
-    //            script{
+    stage('Docker Image Scan: trivy '){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-    //                dockerImageScan("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
-    //            }
-    //         }
-    //     }
-    //     stage('Docker Image Push : ECR '){
-    //      when { expression {  params.action == 'create' } }
-    //         steps{
-    //            script{
+                   dockerImageScan("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
+               }
+            }
+        }
+        stage('Docker Image Push : ECR '){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-    //                dockerImagePush("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
-    //            }
-    //         }
-    //     }   
-    //     stage('Docker Image Cleanup : ECR '){
-    //      when { expression {  params.action == 'create' } }
-    //         steps{
-    //            script{
+                   dockerImagePush("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
+               }
+            }
+        }   
+        stage('Docker Image Cleanup : ECR '){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
                    
-    //                dockerImageCleanup("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
-    //            }
-    //         }
-    //     }  
+                   dockerImageCleanup("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
+               }
+            }
+        }  
 
     // stage('Create EKS Cluster : Terraform'){
     //         when { expression {  params.action == 'create' } }
