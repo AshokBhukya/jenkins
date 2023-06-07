@@ -10,17 +10,15 @@ pipeline {
 
    agent  any
     stages {
-        stage('checkout') {
-            steps {
-                 script{
-                        dir("terraform")
-                        {
-                           branch: "main",
-                            url "git@github.com:Shankargoud1/EKS_Cluster_using_Terraform.git"
-                        }
-                    }
-                }
+        stage('Git Checkout'){
+              steps{
+            gitCheckout(
+                branch: "main",
+                url: "git@github.com:Shankargoud1/EKS_Cluster_using_Terraform.git"
+            ) 
             }
+        }
+          
 
         stage('Plan') {
             steps {
