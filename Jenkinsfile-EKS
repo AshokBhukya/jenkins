@@ -14,7 +14,7 @@ pipeline {
               steps{
             gitCheckout(
                 branch: "main",
-                url: " git"
+                url: "git@github.com:Shankargoud1/terraform-provider-aws.git"
             ) 
             }
         }
