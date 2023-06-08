@@ -14,7 +14,7 @@ pipeline {
               steps{
             gitCheckout(
                 branch: "main",
-                url: "git@github.com:Shankargoud1/EKS_Cluster_using_Terraform.git"
+                url: " git"
             ) 
             }
         }
