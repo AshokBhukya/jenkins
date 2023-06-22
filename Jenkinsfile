@@ -23,7 +23,7 @@ pipeline{
              steps{
             gitCheckout(
                 branch: "master",
-                url: "git@github.com:Shankargoud1/java-hello-world-with-maven.git"
+               git branch: 'main', credentialsId: 'ashok', url: 'git@github.com:AshokBhukya/jenkins.git'
             ) 
             }
         }
